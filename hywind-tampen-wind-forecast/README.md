@@ -22,10 +22,10 @@ nearby offshore installations and the wind farm itself.
 
 Choose one or more objectives:
 
-- Forecast wind conditions for individual turbines over the next 60 minutes. Evaluation metric: root
+- Forecast wind conditions for 1 individual turbine (No.9) over the next 60 minutes. Evaluation metric: root
   mean squared error (RMSE).
-- Forecast wind conditions for individual turbines over the next 30 minutes. Evaluation metric: RMSE.
-- Estimate forecast uncertainty and confidence intervals. Evaluation metric: pinball loss.
+- Forecast wind conditions for 1 individual turbine (No.9) over the next 30 minutes. Evaluation metric: RMSE.
+- Estimate forecast uncertainty and confidence intervals for 1 individual turbine (No.9). Evaluation metric: pinball loss.
 
 Participants may explore machine learning, deep learning, time-series forecasting, agentic workflows,
 and explainable AI techniques.
@@ -66,6 +66,11 @@ Using U and V components avoids circular wind-direction data and allows solution
 and temporal relationships. The locations can be treated as a network of weather sensors where
 upwind observations may provide advance information about future conditions at the wind farm.
 
+![alt text](images/map.png)
+
+![alt text](images/turbines.png)
+
+
 ## Deliverable Considerations
 
 - Specify the forecast target, horizon, sampling interval, and train-validation split.
@@ -74,3 +79,5 @@ upwind observations may provide advance information about future conditions at t
 - Benchmark against a simple persistence forecast.
 - Explain uncertainty calibration and alarm thresholds when applicable.
 - Include reproducible setup and run instructions with the solution.
+
+
