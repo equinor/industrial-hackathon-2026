@@ -153,8 +153,8 @@ Your submission must contain **exactly the 694 timestamps** listed in
 column and replace the values with your forecasts.
 
 Submit one combined wind-speed value for HY09, calculated from the U and V components. The 
-target is `sqrt(U**2 + V**2)`. Use the asset name for a point forecast. Point forecasts
-are evaluated as the median (`q=0.5`) forecast using RMSE and pinball loss:
+target is `sqrt(U**2 + V**2)`. Use the asset name for a point forecast. Point forecasts are
+treated as the median (`q=0.5`) and scored with RMSE:
 
 ```text
 Time,HYT-HY09
@@ -163,7 +163,8 @@ Time,HYT-HY09
 
 The ground-truth target file uses the same `HYT-HY09` combined wind-speed column. For uncertainty
 forecasts, append the quantile to the asset name. The evaluator accepts `_q0.05` notation and
-reports pinball loss, over-estimation percentage, and mean underestimation:
+reports pinball loss against each named quantile, plus over-estimation percentage and mean
+underestimation:
 
 ```text
 Time,HYT-HY09_q0.05,HYT-HY09_q0.5,HYT-HY09_q0.95
