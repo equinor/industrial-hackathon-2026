@@ -9,6 +9,11 @@ Prediction columns must use one of these forms:
     HYT-HY09                   Combined wind-speed forecast (treated as q=0.5)
     HYT-HY09_q0.05             Combined wind-speed quantile forecast
 
+Submit whichever columns you want to be judged on. Quantile columns are optional, and a
+column you leave out simply is not scored. Blank values are allowed too: any metric with
+nothing behind it is reported as ``null`` rather than failing the whole file. Rows are a
+different matter - a submission is expected to carry every scored timestamp.
+
 The target file must contain combined wind-speed columns matching the submitted forecast
 columns and a ``Time`` column or datetime index. Use ``combine_wind_components.py`` to
 create combined targets from U/V component data.
@@ -110,7 +115,8 @@ def score_predictions(predictions: pd.DataFrame, targets: pd.DataFrame) -> dict:
             axis=1,
         ).dropna()
         if paired_values.empty:
-            raise ValueError(f"No non-null values to score for prediction column '{column}'.")
+            scores[str(column)] = {"quantile": quantile, "n": 0, "pinball_loss": None}
+            continue
 
         actual = paired_values["actual"].to_numpy(dtype=float)
         predicted = paired_values["predicted"].to_numpy(dtype=float)
@@ -131,18 +137,29 @@ def score_predictions(predictions: pd.DataFrame, targets: pd.DataFrame) -> dict:
         all_pinball_losses.append(metrics["pinball_loss"])
 
     overall = {"n_prediction_columns": len(scores)}
-    if all_pinball_losses:
-        overall["pinball_loss"] = float(np.mean(all_pinball_losses))
-    if all_squared_errors:
-        overall["RMSE"] = float(np.sqrt(np.mean(np.concatenate(all_squared_errors))))
-    quantile_scores = [score for score in scores.values() if score["quantile"] != 0.5]
-    if quantile_scores:
-        overall["over_estimate_pct"] = float(
-            np.mean([score["over_estimate_pct"] for score in quantile_scores])
-        )
-        overall["mean_underestimation"] = float(
-            np.mean([score["mean_underestimation"] for score in quantile_scores])
-        )
+    overall["pinball_loss"] = (
+        float(np.mean(all_pinball_losses)) if all_pinball_losses else None
+    )
+    overall["RMSE"] = (
+        float(np.sqrt(np.mean(np.concatenate(all_squared_errors))))
+        if all_squared_errors
+        else None
+    )
+    quantile_scores = [
+        score
+        for score in scores.values()
+        if score["quantile"] != 0.5 and score.get("over_estimate_pct") is not None
+    ]
+    overall["over_estimate_pct"] = (
+        float(np.mean([score["over_estimate_pct"] for score in quantile_scores]))
+        if quantile_scores
+        else None
+    )
+    overall["mean_underestimation"] = (
+        float(np.mean([score["mean_underestimation"] for score in quantile_scores]))
+        if quantile_scores
+        else None
+    )
     scores["overall"] = round_metrics(overall)
     return scores
 

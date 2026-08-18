@@ -173,6 +173,10 @@ Time,HYT-HY09_q0.05,HYT-HY09_q0.5,HYT-HY09_q0.95
 Include only the `Time` column and your forecast columns. Do not add `episode_id` or other helper
 columns. Timestamps are UTC and must match the example exactly.
 
+Columns are optional - skip the quantiles, or forecast only one horizon, and you are simply scored
+on what you sent. Rows are not: keep all 694 and leave a cell empty for anything you chose not to
+forecast.
+
 **SUBMISSION**
 
 Send this final target file as a CSV or parquet to `npeti@equinor.com` with your **team name** as the filename 
