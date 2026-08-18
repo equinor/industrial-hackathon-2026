@@ -1,0 +1,11 @@
+# Never commit solution-bearing data: these contain the held-out HYT-HY09 target.
+hywind-tampen-wind-forecast/data/windfeels_test.csv
+hywind-tampen-wind-forecast/_private/
+**/targets.parquet
+**/targets.csv
+
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.vscode/
+.DS_Store
