@@ -22,9 +22,8 @@ nearby offshore installations and the wind farm itself.
 
 Choose one or more objectives:
 
-- Forecast wind conditions for 1 individual turbine (HYT-HY09) over the next 60 minutes. Evaluation metric: root
+- Forecast wind conditions for 1 individual turbine (HYT-HY09) over the next 30 and/or 60 minutes. Evaluation metric: root
   mean squared error (RMSE).
-- Forecast wind conditions for 1 individual turbine (HYT-HY09) over the next 30 minutes. Evaluation metric: RMSE.
 - Estimate forecast uncertainty and confidence intervals for 1 individual turbine (HYT-HY09). Evaluation metric: pinball loss.
 
 Participants may explore machine learning, deep learning, time-series forecasting, agentic workflows,
@@ -114,8 +113,6 @@ wind events**, with calm periods kept as controls. This test set is deliberately
 
 ## Deliverable Considerations
 
-- Specify the forecast target, horizon, sampling interval, and train-validation split.
-- Avoid temporal leakage when creating features and evaluation splits.
 - Report the required metric per submitted forecast column and in aggregate.
 - Benchmark against a simple persistence forecast.
 - Explain uncertainty calibration and alarm thresholds when applicable.
