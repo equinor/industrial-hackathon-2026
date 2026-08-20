@@ -50,12 +50,25 @@ Participants receive a preprocessed time-series dataset sampled every minute.
 
 ### Nearby Offshore Assets
 
-- Statfjord A
-- Statfjord B
-- Gullfaks C
-- Snorre A
-- Snorre B
-- Visund
+| Asset | Column prefix | x_MEPS | y_MEPS |
+| --- | --- | ---: | ---: |
+| Statfjord A | `Statfjord_A` | -698598.213 | -155560.385 |
+| Statfjord B | `Statfjord_B` | -700922.191 | -160619.934 |
+| Gullfaks C | `Gullfaks_C` | -677473.738 | -164506.824 |
+| Snorre A | `Snorre_A` | -679083.503 | -137574.787 |
+| Snorre B | `Snorre_B` | -673906.306 | -129985.052 |
+| Visund | `Visund` | -664395.067 | -149506.704 |
+| Hywind Tampen | `HYT-HY09` | -676293.162 | -151538.198 |
+
+Coordinates are **metres** in the MEPS Lambert conformal conic projection. `x` increases
+eastward and `y` northward, so an offset between two rows lines up directly with the `U`
+and `V` wind components: compare the two to work out which assets are currently upwind of
+the farm, and how long air takes to travel between them. The assets span about 41 km, and
+the nearest, Visund, is 12 km from the farm.
+
+Only `HYT-HY09` is given for the wind farm. The eleven turbines lie within roughly 2 km of
+each other, which is too close for the wind field to differ meaningfully across them, so
+this one position stands for all of them.
 
 ### Hywind Tampen Turbines
 
