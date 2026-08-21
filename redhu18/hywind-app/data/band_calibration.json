@@ -1,0 +1,38 @@
+{
+  "h30": {
+    "lo": {
+      "method": "add",
+      "param": 2.9000000000000004,
+      "k": 2.9000000000000004,
+      "pinball": 0.3704,
+      "coverage": 0.0556,
+      "raw_pinball": 0.4941
+    },
+    "hi": {
+      "method": "add",
+      "param": 0.9,
+      "k": 0.9,
+      "pinball": 0.1934,
+      "coverage": 0.9444,
+      "raw_pinball": 0.2202
+    }
+  },
+  "h60": {
+    "lo": {
+      "method": "mult",
+      "param": 3.9000000000000004,
+      "k": 3.9000000000000004,
+      "pinball": 0.4774,
+      "coverage": 0.0333,
+      "raw_pinball": 1.2954
+    },
+    "hi": {
+      "method": "add",
+      "param": 3.3000000000000003,
+      "k": 3.3000000000000003,
+      "pinball": 0.3801,
+      "coverage": 0.9333,
+      "raw_pinball": 0.7598
+    }
+  }
+}

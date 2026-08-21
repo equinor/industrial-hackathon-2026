@@ -1,0 +1,6 @@
+dash>=3
+plotly>=6
+pandas>=2.2
+pyarrow>=16
+numpy>=1.26
+gunicorn>=21
